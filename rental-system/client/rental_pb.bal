@@ -364,3 +364,360 @@ public isolated client class RentalServiceCreateUsersResponseCaller {
         return self.caller->send(response);
     }
 
+
+    isolated remote function sendContextCreateUsersResponse(ContextCreateUsersResponse response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
+public isolated client class RentalServiceBookingConfirmationCaller {
+    private final grpc:Caller caller;
+
+    public isolated function init(grpc:Caller caller) {
+        self.caller = caller;
+    }
+
+    public isolated function getId() returns int {
+        return self.caller.getId();
+    }
+
+    isolated remote function sendBookingConfirmation(BookingConfirmation response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendContextBookingConfirmation(ContextBookingConfirmation response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
+public isolated client class RentalServiceBookingCartEntryCaller {
+    private final grpc:Caller caller;
+
+    public isolated function init(grpc:Caller caller) {
+        self.caller = caller;
+    }
+
+    public isolated function getId() returns int {
+        return self.caller.getId();
+    }
+
+    isolated remote function sendBookingCartEntry(BookingCartEntry response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendContextBookingCartEntry(ContextBookingCartEntry response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
+public isolated client class RentalServicePropertyCaller {
+    private final grpc:Caller caller;
+
+    public isolated function init(grpc:Caller caller) {
+        self.caller = caller;
+    }
+
+    public isolated function getId() returns int {
+        return self.caller.getId();
+    }
+
+    isolated remote function sendProperty(Property response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendContextProperty(ContextProperty response) returns grpc:Error? {
+        return self.caller->send(response);
+    }
+
+    isolated remote function sendError(grpc:Error response) returns grpc:Error? {
+        return self.caller->sendError(response);
+    }
+
+    isolated remote function complete() returns grpc:Error? {
+        return self.caller->complete();
+    }
+
+    public isolated function isCancelled() returns boolean {
+        return self.caller.isCancelled();
+    }
+}
+
+public type ContextUserStream record {|
+    stream<User, error?> content;
+    map<string|string[]> headers;
+|};
+
+public type ContextPropertyStream record {|
+    stream<Property, error?> content;
+    map<string|string[]> headers;
+|};
+
+public type ContextBookPropertyRequest record {|
+    BookPropertyRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextListPropertiesRequest record {|
+    ListPropertiesRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextUser record {|
+    User content;
+    map<string|string[]> headers;
+|};
+
+public type ContextUpdatePropertyRequest record {|
+    UpdatePropertyRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextSearchPropertyResponse record {|
+    SearchPropertyResponse content;
+    map<string|string[]> headers;
+|};
+
+public type ContextConfirmBookingRequest record {|
+    ConfirmBookingRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextPropertyList record {|
+    PropertyList content;
+    map<string|string[]> headers;
+|};
+
+public type ContextRemovePropertyRequest record {|
+    RemovePropertyRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextBookingCartEntry record {|
+    BookingCartEntry content;
+    map<string|string[]> headers;
+|};
+
+public type ContextBookingConfirmation record {|
+    BookingConfirmation content;
+    map<string|string[]> headers;
+|};
+
+public type ContextAddPropertyRequest record {|
+    AddPropertyRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextCreateUsersResponse record {|
+    CreateUsersResponse content;
+    map<string|string[]> headers;
+|};
+
+public type ContextSearchPropertyRequest record {|
+    SearchPropertyRequest content;
+    map<string|string[]> headers;
+|};
+
+public type ContextProperty record {|
+    Property content;
+    map<string|string[]> headers;
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type BookPropertyRequest record {|
+    string guest_id = "";
+    string property_id = "";
+    string check_in = "";
+    string check_out = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type ListPropertiesRequest record {|
+    string location?;
+    float max_price?;
+    float min_price?;
+|};
+
+isolated function isValidListpropertiesrequest(ListPropertiesRequest r) returns boolean {
+    int _locationCount = 0;
+    if r?.location !is () {
+        _locationCount += 1;
+    }
+    int _max_priceCount = 0;
+    if r?.max_price !is () {
+        _max_priceCount += 1;
+    }
+    int _min_priceCount = 0;
+    if r?.min_price !is () {
+        _min_priceCount += 1;
+    }
+    if _locationCount > 1 || _max_priceCount > 1 || _min_priceCount > 1 {
+        return false;
+    }
+    return true;
+}
+
+isolated function setListPropertiesRequest_Location(ListPropertiesRequest r, string location) {
+    r.location = location;
+}
+
+isolated function setListPropertiesRequest_MaxPrice(ListPropertiesRequest r, float max_price) {
+    r.max_price = max_price;
+}
+
+isolated function setListPropertiesRequest_MinPrice(ListPropertiesRequest r, float min_price) {
+    r.min_price = min_price;
+}
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type User record {|
+    string user_id = "";
+    string full_name = "";
+    string email = "";
+    string role = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type UpdatePropertyRequest record {|
+    string property_id = "";
+    float price_per_night?;
+    string status?;
+|};
+
+isolated function isValidUpdatepropertyrequest(UpdatePropertyRequest r) returns boolean {
+    int _price_per_nightCount = 0;
+    if r?.price_per_night !is () {
+        _price_per_nightCount += 1;
+    }
+    int _statusCount = 0;
+    if r?.status !is () {
+        _statusCount += 1;
+    }
+    if _price_per_nightCount > 1 || _statusCount > 1 {
+        return false;
+    }
+    return true;
+}
+
+isolated function setUpdatePropertyRequest_PricePerNight(UpdatePropertyRequest r, float price_per_night) {
+    r.price_per_night = price_per_night;
+}
+
+isolated function setUpdatePropertyRequest_Status(UpdatePropertyRequest r, string status) {
+    r.status = status;
+}
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type SearchPropertyResponse record {|
+    boolean found = false;
+    string status_message = "";
+    Property property = {};
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type ConfirmBookingRequest record {|
+    string cart_id = "";
+    string guest_id = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type PropertyList record {|
+    Property[] properties = [];
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type RemovePropertyRequest record {|
+    string property_id = "";
+    string host_id = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type BookingCartEntry record {|
+    string cart_id = "";
+    string guest_id = "";
+    string property_id = "";
+    string check_in = "";
+    string check_out = "";
+    string status_message = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type BookingConfirmation record {|
+    boolean success = false;
+    string booking_id = "";
+    string property_id = "";
+    string check_in = "";
+    string check_out = "";
+    int nights = 0;
+    float total_cost = 0.0;
+    string message = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type AddPropertyRequest record {|
+    string host_id = "";
+    string property_name = "";
+    string location = "";
+    string property_type = "";
+    float price_per_night = 0.0;
+    string status = "";
+    string region = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type CreateUsersResponse record {|
+    int users_created = 0;
+    string message = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type SearchPropertyRequest record {|
+    string property_id = "";
+|};
+
+@protobuf:Descriptor {value: RENTAL_DESC}
+public type Property record {|
+    string property_id = "";
+    string host_id = "";
+    string property_name = "";
+    string location = "";
+    string property_type = "";
+    float price_per_night = 0.0;
+    string status = "";
+    string region = "";
+|};
